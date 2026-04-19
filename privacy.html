@@ -3,75 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gizlilik Politikası - MKK Dönüştürücü</title>
+    <title>Gizlilik Politikası - Kasam</title>
     <link rel="icon" type="image/png" href="icon.png">
     <style>
         :root {
             --bg: #0A0A0A;
             --card: #1A1A1A;
+            --border: #333333;
             --text: #FFFFFF;
             --text-secondary: #B3B3B3;
             --accent: #6366F1;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(145deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
-            background-attachment: fixed;
+            background: var(--bg);
             color: var(--text);
-            min-height: 100vh;
             line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
-
-        .container {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        .updated {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 32px;
-        }
-
-        h2 {
-            font-size: 18px;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            color: var(--accent);
-        }
-
-        p, li {
-            color: var(--text-secondary);
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
+        .container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+        h1 { font-size: 32px; margin-bottom: 8px; letter-spacing: -0.01em; }
+        .updated { color: var(--text-secondary); font-size: 14px; margin-bottom: 32px; }
+        h2 { font-size: 20px; margin-top: 36px; margin-bottom: 12px; color: var(--accent); }
+        h3 { font-size: 16px; margin-top: 20px; margin-bottom: 8px; }
+        p, li { color: var(--text-secondary); font-size: 15px; margin-bottom: 12px; }
+        ul { padding-left: 22px; }
+        li { margin-bottom: 6px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -82,49 +42,86 @@
             border-radius: 8px;
             color: var(--accent);
         }
+        strong { color: var(--text); }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Gizlilik Politikası</h1>
-        <p class="updated">Son güncelleme: 11 Mart 2026</p>
+        <p class="updated">Son güncelleme: 19 Nisan 2026</p>
 
         <h2>Genel Bakış</h2>
-        <p>MKK Dönüştürücü, kullanıcı gizliliğine saygı duyan basit bir araçtır. Bu sayfa, verilerinizin nasıl işlendiğini açıklar.</p>
+        <p>Kasam ("Portföy Performans Takip"), kullanıcı gizliliğine saygı duyan bir mobil uygulamadır. Bu politika; uygulama (<strong>com.portfolio.portfoy_takip</strong>) ve ilgili web sitesi (<strong>portfoyperformans-kasam.github.io</strong>) tarafından hangi verilerin nasıl işlendiğini açıklar.</p>
 
-        <h2>Veri Toplama</h2>
-        <p>Bu araç <strong>hiçbir kişisel veri toplamaz</strong>. Yüklediğiniz Excel dosyaları:</p>
+        <h2>1. Topladığımız Veriler</h2>
+
+        <h3>1.1 Uygulamaya Girdiğiniz Portföy Verileri</h3>
+        <p>Eklediğiniz varlıklar, işlemler, fiyatlar ve notlar <strong>yalnızca cihazınızın yerel depolama alanında</strong> (SharedPreferences/Hive) saklanır. Sunucularımıza gönderilmez, başka kullanıcılarla paylaşılmaz.</p>
+
+        <h3>1.2 Fiyat Sorguları</h3>
+        <p>Hisse/kripto fiyatı, döviz kuru ve tarihî maliyet hesaplaması için aşağıdaki üçüncü taraf API'lere anonim istek gönderilir:</p>
         <ul>
-            <li>Tamamen tarayıcınızda işlenir</li>
-            <li>Hiçbir sunucuya gönderilmez</li>
-            <li>Saklanmaz veya kaydedilmez</li>
-            <li>Üçüncü taraflarla paylaşılmaz</li>
+            <li>finTech API (HuggingFace Spaces) — BIST fiyatları, döviz, altın</li>
+            <li>Yahoo Finance — ABD hisse, tarihî fiyat</li>
+            <li>CoinGecko — kripto fiyatları</li>
+            <li>İş Yatırım — tarihî günlük BIST fiyatları</li>
+        </ul>
+        <p>Bu isteklerde yalnızca sorgulanan sembol gönderilir; kim olduğunuz, hangi miktarda tuttuğunuz veya kişisel bilgileriniz paylaşılmaz.</p>
+
+        <h3>1.3 MKK Excel Dosyanız</h3>
+        <p>Yüklediğiniz MKK (Merkezi Kayıt Kuruluşu) Excel dosyası <strong>cihazınızda işlenir</strong>. İçerik sunucuya yüklenmez.</p>
+
+        <h3>1.4 Reklam ve Abonelik</h3>
+        <ul>
+            <li><strong>Google AdMob:</strong> Freemium kullanıcılar için banner, interstitial, rewarded ve native reklamlar gösterilir. AdMob reklam kişiselleştirme için cihaz reklam kimliği (AAID), IP, genel konum gibi veriler kullanabilir. Detay: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Gizlilik Politikası</a>.</li>
+            <li><strong>RevenueCat:</strong> Premium abonelik yönetimi için RevenueCat kullanılır. Google Play satın alma kimliği ve abonelik durumunu işler. Detay: <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">RevenueCat Gizlilik Politikası</a>.</li>
         </ul>
 
-        <h2>Çerezler ve Yerel Depolama</h2>
-        <p>Bu site işlevsellik için çerez veya yerel depolama kullanmaz. Ancak reklam sağlayıcıları (Google AdSense) kendi çerezlerini kullanabilir.</p>
+        <h3>1.5 Analitik</h3>
+        <p>Uygulama içinde üçüncü taraf analitik (Google Analytics, Firebase Analytics, Mixpanel vb.) <strong>kullanılmaz</strong>. Davranışınızı izlemiyoruz.</p>
 
-        <h2>Reklamlar</h2>
-        <p>Bu sitede Google AdSense reklamları gösterilebilir. Google, reklamları kişiselleştirmek için çerezler kullanabilir. Daha fazla bilgi için <a href="https://policies.google.com/privacy" target="_blank">Google Gizlilik Politikası</a>'nı inceleyebilirsiniz.</p>
+        <h2>2. Verilerin Paylaşımı</h2>
+        <p>Kişisel verilerinizi üçüncü taraflara <strong>satmıyoruz, kiralamıyoruz veya takas etmiyoruz</strong>. Tek istisna: yasal zorunluluk halinde resmi mercilere, yasal sınırlar içinde.</p>
 
-        <h2>Üçüncü Taraf Bağlantılar</h2>
-        <p>Bu site aşağıdaki harici bağlantılar içerir:</p>
+        <h2>3. İzinler (Android)</h2>
         <ul>
-            <li>e-YATIRIMCI (eyatirimci.mkk.com.tr)</li>
-            <li>Google Play Store</li>
-            <li>Twitter/X (@kasam_app)</li>
+            <li><strong>Storage (depolama):</strong> Excel dosyası yüklemek ve portföyünüzü yedek olarak dışa aktarmak için.</li>
+            <li><strong>Internet:</strong> Fiyat sorguları, reklam yüklenmesi ve abonelik doğrulama için.</li>
+            <li><strong>Billing:</strong> Google Play üzerinden premium abonelik satın alımı için.</li>
         </ul>
-        <p>Bu sitelerin gizlilik politikalarından sorumlu değiliz.</p>
+        <p>Konum, kamera, mikrofon, rehber, SMS gibi hassas izinler <strong>istenmez</strong>.</p>
 
-        <h2>Değişiklikler</h2>
-        <p>Bu gizlilik politikası zaman zaman güncellenebilir. Önemli değişiklikler bu sayfada duyurulacaktır.</p>
+        <h2>4. Veri Saklama Süresi</h2>
+        <p>Portföy verileriniz, siz uygulamayı kaldırana veya "Tüm Verileri Sil" özelliğini kullanana kadar cihazınızda kalır. Abonelik durumu Google Play ve RevenueCat tarafından saklanır (aboneliğinizle orantılı süre).</p>
 
-        <h2>İletişim</h2>
-        <p>Sorularınız için: <a href="https://twitter.com/kasam_app" target="_blank">@kasam_app</a></p>
+        <h2>5. Haklarınız (KVKK / GDPR)</h2>
+        <ul>
+            <li><strong>Erişim:</strong> Verileriniz zaten cihazınızda, istediğiniz an görebilirsiniz.</li>
+            <li><strong>Silme:</strong> Uygulamayı kaldırın veya Ayarlar → "Tüm Verileri Sil" seçeneğini kullanın.</li>
+            <li><strong>Taşınabilirlik:</strong> Ayarlar → "Portföyü Excel Olarak İndir" ile dışa aktarın.</li>
+            <li><strong>İtiraz / Şikayet:</strong> Aşağıdaki iletişim kanallarıyla ulaşın. Türkiye'de KVKK kapsamında Kişisel Verileri Koruma Kurumu'na şikayet hakkınız saklıdır.</li>
+        </ul>
 
-        <a href="index.html" class="back-link">
-            ← Ana Sayfaya Dön
-        </a>
+        <h2>6. Çocuklar</h2>
+        <p>Uygulama 13 yaş altı kullanıcılara yönelik değildir ve bu yaş grubundan bilerek veri toplanmaz.</p>
+
+        <h2>7. Güvenlik</h2>
+        <p>Veriler cihazınızda saklandığı için internet üzerinden sızdırılma riski düşüktür. Ancak cihazınıza fiziksel erişimi olan kişilerin verilerinize ulaşabileceğini unutmayın. Cihaz kilidi kullanmanızı öneririz.</p>
+
+        <h2>8. Web Sitesi (MKK Dönüştürücü)</h2>
+        <p><a href="mkk.html">MKK Dönüştürücü</a> aracı tamamen tarayıcınızda çalışır. Yüklediğiniz dosya sunucuya gönderilmez. Sayfa Google AdSense reklamları gösterir (yukarıdaki AdMob şartlarına benzer kurallarla).</p>
+
+        <h2>9. Değişiklikler</h2>
+        <p>Bu politika zaman zaman güncellenebilir. Önemli değişikliklerde uygulama güncellemesiyle birlikte kullanıcılar bilgilendirilir. Güncel versiyon her zaman bu sayfadadır.</p>
+
+        <h2>10. İletişim</h2>
+        <p>Sorularınız veya talepleriniz için:</p>
+        <ul>
+            <li>X (Twitter): <a href="https://x.com/kasam_app" target="_blank" rel="noopener">@kasam_app</a></li>
+            <li>Uygulama içinden: Ayarlar → İletişim</li>
+        </ul>
+
+        <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
     </div>
 </body>
 </html>
